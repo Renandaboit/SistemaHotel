@@ -6,25 +6,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "reserva")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class Reserva {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
-    private String cpf;
-    private String email;
-    private String telefone;
-    private Date dataNascimento;
-    private String endereco;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Reserva> reservas;
+    @ManyToOne
+    @JoinColumn(name = "quarto_id")
+    private Quarto quarto;
+
+    private Date checkIn;
+    private Date checkOut;
+    private Integer hospedes;
+    private Double valor;
 }
