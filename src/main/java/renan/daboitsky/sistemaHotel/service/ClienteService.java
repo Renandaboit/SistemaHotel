@@ -11,16 +11,16 @@ import renan.daboitsky.sistemaHotel.model.Cliente;
 import renan.daboitsky.sistemaHotel.repository.ClienteRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClienteService {
 
-    private ClienteRepository repository;
+    private final ClienteRepository repository;
     private final ClienteMapper mapper;
 
-    public ClienteService(ClienteMapper mapper) {
+    public ClienteService(ClienteMapper mapper, ClienteRepository repository) {
         this.mapper = mapper;
+        this.repository = repository;
     }
 
     public List<ClienteResponse> listar() {
